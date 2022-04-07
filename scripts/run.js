@@ -7,10 +7,10 @@ async function main() {
   console.log("EpicNFT deployed to:", contract.address);
 
   let txn = await contract.mint();
-  txn.wait();
+  await txn.wait();
 
   txn = await contract.mint();
-  txn.wait();
+  await txn.wait();
 }
 
 // run the script

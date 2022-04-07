@@ -1,7 +1,8 @@
 import "./App.css";
-import {} from "ethers";
+import { providers, Contract } from "ethers";
 import { useEffect, useState } from "react";
 import { withEth } from "./lib/eth";
+import epicNFT from "./lib/epicNFT.json";
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
@@ -20,7 +21,18 @@ function App() {
     setCurrentAccount(accounts[0]);
   });
 
-  const mintNFT = withEth(async (ethereum) => {});
+  const mintNFT = withEth(async (ethereum) => {
+    const contractAddress = process.env.REACT_APP_STAGING_CONTRACT_ADDRESS;
+    const contractABI = epicNFT.abi;
+    
+    const signer = new providers.Web3Provider(ethereum).getSigner();
+    const contract = new Contract(contractAddress, contractABI, signer);
+
+    const txn = await contract.mint();
+    console.log(`Mining ${txn.hash}…`);
+    await txn.wait();
+    console.log(`Minted. See transaction: https://rinkeby.etherscan.io/tx/${txn.hash}`);
+  });
 
   useEffect(() => {
     checkIfWalletConnected();

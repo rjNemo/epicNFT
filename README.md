@@ -2,6 +2,8 @@
 
 Demo NFT collection for learning purposes.
 
+https://testnets.opensea.io/collection/squarenft-lsikgsvytr
+
 ## Built With
 
 - [Solidity](https://soliditylang.org/)

@@ -8,9 +8,11 @@ async function main() {
 
   let txn = await contract.mint();
   txn.wait();
+  console.log("Mint NFT #1")
 
   txn = await contract.mint();
   txn.wait();
+  console.log("Mint NFT #2")
 }
 
 // run the script

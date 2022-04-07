@@ -7,6 +7,9 @@ import epicNFT from "./lib/epicNFT.json";
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
 
+  const contractAddress = process.env.REACT_APP_STAGING_CONTRACT_ADDRESS;
+  const contractABI = epicNFT.abi;
+
   const checkIfWalletConnected = withEth(async (ethereum) => {
     const accounts = await ethereum.request({ method: "eth_accounts" });
     if (accounts.length !== 0) {
@@ -22,9 +25,6 @@ function App() {
   });
 
   const mintNFT = withEth(async (ethereum) => {
-    const contractAddress = process.env.REACT_APP_STAGING_CONTRACT_ADDRESS;
-    const contractABI = epicNFT.abi;
-    
     const signer = new providers.Web3Provider(ethereum).getSigner();
     const contract = new Contract(contractAddress, contractABI, signer);
 
@@ -37,6 +37,27 @@ function App() {
   useEffect(() => {
     checkIfWalletConnected();
   }, []);
+
+  useEffect(() => {
+    let contract;
+    const handleNewEpicNFT = (from, tokenID) => {
+      console.log(from, tokenID.toNumber());
+      alert(
+        `Hey there! We've minted your NFT. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: <https://testnets.opensea.io/assets/${contractAddress}/${tokenID.toNumber()}>`
+      );
+    };
+
+    if (window.ethereum) {
+      const signer = new providers.Web3Provider(window.ethereum).getSigner();
+      contract = new Contract(contractAddress, contractABI, signer);
+      contract.on("NewEpicNFTMinted", handleNewEpicNFT);
+    }
+    return () => {
+      if (contract) {
+        contract.off("NewEpicNFTMinted", handleNewEpicNFT);
+      }
+    };
+  }, [contractABI, contractAddress]);
 
   return (
     <div className="App">

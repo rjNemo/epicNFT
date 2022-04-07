@@ -2,9 +2,12 @@
 
 Demo NFT collection for learning purposes.
 
-## OPenSea Testnet
- 1. https://testnets.opensea.io/collection/squarenft-cd2xk3yh7v
- 2. https://testnets.opensea.io/collection/squarenft-bndes4idpq
+## OpenSea Testnet
+
+1.  https://testnets.opensea.io/collection/squarenft-cd2xk3yh7v
+2.  https://testnets.opensea.io/collection/squarenft-bndes4idpq
+3.  https://testnets.opensea.io/collection/squarenft-lemz9demvy
+4.  https://testnets.opensea.io/collection/squarenft-1xkwn34mdz
 
 ## Square NFT
 

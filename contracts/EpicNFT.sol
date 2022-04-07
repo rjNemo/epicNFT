@@ -10,6 +10,8 @@ contract EpicNFT is ERC721URIStorage {
     using Counters for Counters.Counter;
     Counters.Counter private _tokenIds;
 
+    event NewEpicNFTMinted(address sender, uint256 tokenID);
+
     constructor() ERC721("SquareNFT", "SQUARE") {
         console.log("My first NFT contract! EPIC!!!");
     }
@@ -122,6 +124,7 @@ contract EpicNFT is ERC721URIStorage {
         _setTokenURI(tokenID, tokenUri);
         console.log("NFT %s minted to %s", tokenID, msg.sender);
         _tokenIds.increment();
+        emit NewEpicNFTMinted(msg.sender, tokenID);
     }
 
     function pickRandomWord(

@@ -1,0 +1,55 @@
+Arguments: 
+  /Users/rnemausat/.nvm/versions/node/v16.13.2/bin/node /usr/local/Cellar/yarn/1.22.18/libexec/bin/yarn.js init
+
+PATH: 
+  /Users/rnemausat/.pyenv/shims:/Users/rnemausat/.pyenv/bin:/usr/local/sbin:/Users/rnemausat/.deno/bin:/Users/rnemausat/.pyenv/shims:/Users/rnemausat/.pyenv/bin:/Users/rnemausat/.nvm/versions/node/v16.13.2/bin:/usr/local/sbin:/Users/rnemausat/.deno/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/go/bin:/Library/Apple/usr/bin:/Users/rnemausat/.cargo/bin:/Users/rnemausat/.local/bin:/Users/rnemausat/.fig/bin:/Users/rnemausat/.local/bin:/Users/rnemausat/.local/bin:/Users/rnemausat/Library/Android/sdk/emulator:/Users/rnemausat/Library/Android/sdk/tools:/Users/rnemausat/Library/Android/sdk/tools/bin:/Users/rnemausat/Library/Android/sdk/platform-tools:/Users/rnemausat/flutter/bin:/Users/rnemausat/go/bin:/Users/rnemausat/.local/bin:/Users/rnemausat/.local/bin:/Users/rnemausat/Library/Android/sdk/emulator:/Users/rnemausat/Library/Android/sdk/tools:/Users/rnemausat/Library/Android/sdk/tools/bin:/Users/rnemausat/Library/Android/sdk/platform-tools:/Users/rnemausat/flutter/bin:/Users/rnemausat/go/bin
+
+Yarn version: 
+  1.22.18
+
+Node version: 
+  16.13.2
+
+Platform: 
+  darwin x64
+
+Trace: 
+  Error: canceled
+      at Interface.<anonymous> (/usr/local/Cellar/yarn/1.22.18/libexec/lib/cli.js:137143:13)
+      at Interface.emit (node:events:390:28)
+      at Interface._ttyWrite (node:readline:1081:16)
+      at ReadStream.onkeypress (node:readline:288:10)
+      at ReadStream.emit (node:events:390:28)
+      at emitKeys (node:internal/readline/utils:358:14)
+      at emitKeys.next (<anonymous>)
+      at ReadStream.onData (node:internal/readline/emitKeypressEvents:61:36)
+      at ReadStream.emit (node:events:390:28)
+      at addChunk (node:internal/streams/readable:315:12)
+
+npm manifest: 
+  {
+    "name": "nft-collection",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+      "dev": "npx hardhat run scripts/sample-script.js"
+    },
+    "devDependencies": {
+      "@nomiclabs/hardhat-ethers": "^2.0.0",
+      "@nomiclabs/hardhat-waffle": "^2.0.0",
+      "chai": "^4.2.0",
+      "ethereum-waffle": "^3.0.0",
+      "ethers": "^5.0.0",
+      "hardhat": "^2.9.3"
+    },
+    "dependencies": {
+      "@openzeppelin/contracts": "^4.5.0"
+    }
+  }
+
+yarn manifest: 
+  No manifest
+
+Lockfile: 
+  No lockfile

@@ -104,11 +104,22 @@ function App() {
               <p className="sub-text">
                 Hey there! We've minted your NFT. It may be blank right now. <br />
                 It can take a max of 10 min to show up on OpenSea. Here's the{" "}
-                <a href={link} target="_blank">
+                <a href={link} target="_blank" rel="noreferrer">
                   link
                 </a>
               </p>
             )}
+            <button
+              className="cta-button connect-wallet-button"
+              onClick={() =>
+                window.open(
+                  "https://testnets.opensea.io/collection/squarenft-noshuqlivp",
+                  "_blank"
+                )
+              }
+            >
+              View Collection on OpenSea
+            </button>
           </div>
         </div>
       </div>

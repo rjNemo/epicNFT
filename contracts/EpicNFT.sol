@@ -81,7 +81,7 @@ contract EpicNFT is ERC721URIStorage {
         return _tokenIds.current();
     }
 
-    function getMaxNFTAllowed() public view returns (uint256) {
+    function getMaxNFTAllowed() public view returns(uint){
         return maxTokenAllowed;
     }
 

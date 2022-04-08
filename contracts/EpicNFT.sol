@@ -11,6 +11,7 @@ contract EpicNFT is ERC721URIStorage {
     Counters.Counter private _tokenIds;
 
     event NewEpicNFTMinted(address sender, uint256 tokenID);
+    uint256 private maxTokenAllowed = 50;
 
     constructor() ERC721("SquareNFT", "SQUARE") {
         console.log("My first NFT contract! EPIC!!!");
@@ -76,7 +77,19 @@ contract EpicNFT is ERC721URIStorage {
         "Sailor"
     ];
 
+    function nftMintedCount() public view returns (uint256) {
+        return _tokenIds.current();
+    }
+
+    function getMaxNFTAllowed() public view returns (uint256) {
+        return maxTokenAllowed;
+    }
+
     function mint() public {
+        require(
+            _tokenIds.current() < maxTokenAllowed,
+            "the maximum of EpicNFT has already been minted"
+        );
         uint256 tokenID = _tokenIds.current();
 
         string memory color = pickRandomWord(colors, "color", tokenID);

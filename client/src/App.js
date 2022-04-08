@@ -3,11 +3,14 @@ import { providers, Contract } from "ethers";
 import { useEffect, useState } from "react";
 import { withEth } from "./lib/eth";
 import epicNFT from "./lib/epicNFT.json";
+import { LoadingOverlay } from "@mantine/core";
 
 function App() {
   const [currentAccount, setCurrentAccount] = useState("");
   const [mintedNFT, setMintedNFT] = useState(0);
   const [maxNFT, setMaxNFT] = useState(0);
+  const [loading, setLoading] = useState(false);
+  const [link, setLink] = useState("");
 
   const contractAddress = process.env.REACT_APP_STAGING_CONTRACT_ADDRESS;
   const contractABI = epicNFT.abi;
@@ -31,8 +34,11 @@ function App() {
     const contract = new Contract(contractAddress, contractABI, signer);
 
     const txn = await contract.mint();
+    setLink("");
+    setLoading(true);
     console.log(`Mining ${txn.hash}…`);
     await txn.wait();
+    setLoading(false);
     console.log(`Minted. See transaction: https://rinkeby.etherscan.io/tx/${txn.hash}`);
   });
 
@@ -59,9 +65,7 @@ function App() {
     const handleNewEpicNFT = (from, tokenID) => {
       console.log(from, tokenID.toNumber());
       setMintedNFT(tokenID + 1);
-      alert(
-        `Hey there! We've minted your NFT. It may be blank right now. It can take a max of 10 min to show up on OpenSea. Here's the link: <https://testnets.opensea.io/assets/${contractAddress}/${tokenID.toNumber()}>`
-      );
+      setLink(`https://testnets.opensea.io/assets/${contractAddress}/${tokenID.toNumber()}`);
     };
 
     if (window.ethereum) {
@@ -82,18 +86,30 @@ function App() {
         <div className="header-container">
           <p className="header gradient-text">EpicNFTs Collection</p>
           <p className="sub-text">Each unique. Each beautiful. Discover your NFT today.</p>
-          {currentAccount ? (
-            <button onClick={mintNFT} className="cta-button mint-button">
-              Mint your EpicNFT
-            </button>
-          ) : (
-            <button className="cta-button connect-wallet-button" onClick={connectWallet}>
-              Connect with Wallet
-            </button>
-          )}
-          <p className="sub-text">
-            {mintedNFT} EpicNFTs on {maxNFT} already minted
-          </p>
+          <div>
+            <LoadingOverlay visible={loading} />
+            {currentAccount ? (
+              <button onClick={mintNFT} className="cta-button mint-button">
+                Mint your EpicNFT
+              </button>
+            ) : (
+              <button className="cta-button connect-wallet-button" onClick={connectWallet}>
+                Connect with Wallet
+              </button>
+            )}
+            <p className="sub-text">
+              {mintedNFT} EpicNFTs on {maxNFT} already minted
+            </p>
+            {link && (
+              <p className="sub-text">
+                Hey there! We've minted your NFT. It may be blank right now. <br />
+                It can take a max of 10 min to show up on OpenSea. Here's the{" "}
+                <a href={link} target="_blank">
+                  link
+                </a>
+              </p>
+            )}
+          </div>
         </div>
       </div>
     </div>

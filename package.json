@@ -3,13 +3,18 @@
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
+  "config": {
+    "contractAddress": "0xAd9b1Faf6eDC836C16c7ff4e1E16012982030CE3"
+  },
   "scripts": {
     "dev": "npx hardhat run scripts/run.js",
     "deploy:testnet": "npx hardhat run scripts/deploy.js --network rinkeby",
+    "verify:testnet": "npx hardhat verify ${npm_package_config_contractAddress} --network rinkeby",
     "test": "npx hardhat test"
   },
   "devDependencies": {
     "@nomiclabs/hardhat-ethers": "^2.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.0.3",
     "@nomiclabs/hardhat-waffle": "^2.0.0",
     "chai": "^4.2.0",
     "ethereum-waffle": "^3.0.0",

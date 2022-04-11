@@ -2,6 +2,10 @@
 
 Demo NFT collection for learning purposes.
 
+Deployed on [link](https://keen-swan-c84e28.netlify.app/)
+
+[![nft](https://lh3.googleusercontent.com/qaMvdevQbrgmjsaGLWdvciVOgTM1GNovIQ6XPWHF8BiOPEvS4mk1Q2gACR6H4Oyv7NiBc43gDs8kiL4qI7Ejp6D48MqZ2cUrN1QekA=w600)](https://opensea.io/assets/matic/0x3cd266509d127d0eac42f4474f57d0526804b44e/16596)
+
 ## OpenSea Testnet
 
 1.  https://testnets.opensea.io/collection/squarenft-cd2xk3yh7v

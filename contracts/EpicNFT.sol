@@ -11,83 +11,82 @@ contract EpicNFT is ERC721URIStorage {
     Counters.Counter private _tokenIds;
 
     event NewEpicNFTMinted(address sender, uint256 tokenID);
-    uint256 private maxTokenAllowed = 50;
+
+    uint256 private constant MAX_NFT_ALLOWED = 50;
 
     constructor() ERC721("SquareNFT", "SQUARE") {
         console.log("My first NFT contract! EPIC!!!");
     }
 
-    string baseSvg1 =
-        "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill:";
+    string baseSvg1 = "<svg xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMinYMin meet' viewBox='0 0 350 350'><style>.base { fill:";
 
-    string baseSvg2 =
-        "; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
+    string baseSvg2 = "; font-family: serif; font-size: 24px; }</style><rect width='100%' height='100%' fill='black' /><text x='50%' y='50%' class='base' dominant-baseline='middle' text-anchor='middle'>";
 
     string[] colors = [
-        "red",
-        "green",
-        "blue",
-        "white",
-        "yellow",
-        "cyan",
-        "pink",
-        "magenta",
-        "silver",
-        "gold"
+    "red",
+    "green",
+    "blue",
+    "white",
+    "yellow",
+    "cyan",
+    "pink",
+    "magenta",
+    "silver",
+    "gold"
     ];
 
     string[] levels = [
-        "Epic",
-        "Legendary",
-        "Heroic",
-        "Cool",
-        "Fantastic",
-        "Terrible",
-        "Crazy",
-        "Wild",
-        "Terrifying",
-        "Spooky"
+    "Epic",
+    "Legendary",
+    "Heroic",
+    "Cool",
+    "Fantastic",
+    "Terrible",
+    "Crazy",
+    "Wild",
+    "Terrifying",
+    "Spooky"
     ];
 
     string[] classes = [
-        "Assassin",
-        "Cleric",
-        "Rogue",
-        "Ninja",
-        "Lord",
-        "Wizard",
-        "Warrior",
-        "Berserker",
-        "Necromander",
-        "Summoner",
-        "Bard",
-        "Lancer"
+    "Assassin",
+    "Cleric",
+    "Rogue",
+    "Ninja",
+    "Lord",
+    "Wizard",
+    "Warrior",
+    "Berserker",
+    "Necromander",
+    "Summoner",
+    "Bard",
+    "Lancer"
     ];
 
     string[] jobs = [
-        "Soldier",
-        "Healer",
-        "Explorer",
-        "Merchant",
-        "Developer",
-        "BlackSmith",
-        "Hitman",
-        "Cook",
-        "Hunter",
-        "Sailor"
+    "Soldier",
+    "Healer",
+    "Explorer",
+    "Merchant",
+    "Developer",
+    "BlackSmith",
+    "Hitman",
+    "Cook",
+    "Hunter",
+    "Sailor"
     ];
 
     function nftMintedCount() public view returns (uint256) {
         return _tokenIds.current();
     }
 
-    function getMaxNFTAllowed() public view returns(uint){
-        return maxTokenAllowed;
+    function getMaxNFTAllowed() public pure returns (uint) {
+        return MAX_NFT_ALLOWED;
     }
 
     function mint() public {
         require(
-            _tokenIds.current() < maxTokenAllowed,
+            _tokenIds.current() < MAX_NFT_ALLOWED,
             "the maximum of EpicNFT has already been minted"
         );
         uint256 tokenID = _tokenIds.current();
